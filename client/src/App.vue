@@ -4,24 +4,22 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/>
     <Register></Register> -->
+    <Menu></Menu>
     <router-view></router-view>
   </div>
   
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// import Register from './components/Register.vue'
+import Menu from '@/components/Menu.vue'
 
-
-// export default {
-//   name: 'app',
-//   components: {
-//     HelloWorld,
-//     Register
-//   }
-// }
+export default {
+   components: {
+     Menu
+   }
+}
 </script>
+
 
 <style>
 #app {

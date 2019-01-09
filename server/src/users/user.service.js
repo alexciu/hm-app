@@ -30,9 +30,10 @@ async function getAll () {
   return await User.find().select('-hash')
 }
 
+// .select('-hash') fara hash
 // temporara
 async function getAlladmin () {
-  return await User.find({})
+  return await User.find({}).select('-hash')
 }
 
 async function getById (id) {

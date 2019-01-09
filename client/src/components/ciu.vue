@@ -2,7 +2,7 @@
   <div class="hello">
     <h6 class="temp">LandingPage.vue (/)</h6>
     
-    <h1>Welcome!</h1>
+    <h1>ciu!</h1>
 
   </div>
 </template>

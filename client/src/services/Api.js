@@ -1,7 +1,8 @@
 import axios from 'axios'
 
+//adica zaloaga de server
 export default () => {
     return axios.create({
-        baseURL: `http://192.168.1.107:8081/`
+        baseURL: `http://localhost:8081/`
     })
 }

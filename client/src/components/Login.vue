@@ -1,21 +1,17 @@
 <template>
-  <div class="register">
-    <h6 class="temp">Register.vue (/register)</h6>
+  <div class="login">
+    <h6 class="temp">Login.vue (/register)</h6>
 
     <h1>Inregistrare useri</h1>
     <div class="forms">
       <fieldset>
-      <input type="text" name="firstName" placeholder="First name" v-model="firstName">
-      <br/>
-      <input type="text" name="lastName" placeholder="Last name" v-model="lastName">
-      <br/>
       <input type="email" name="username" placeholder="Username" v-model="username">
       <br/>
       <input type="password" name="password" placeholder="password" v-model="password">
       <br/>
-      <button id="submit-user" @click="register" v-if="!inregistrat">Add user</button>
+      <button id="submit-user" @click="login" v-if="!logat">Login</button>
       <p v-if="serverError">{{serverMessage.message}}</p>
-      <button id="reset" @click="reset" v-if="inregistrat">Add more</button>
+      <button id="reset" @click="reset" v-if="logat">Login again</button>
       <hr/>
       </fieldset>
     </div>
@@ -31,7 +27,7 @@
 </template>
 
 <script>
-import AuthenticationService from '@/services/AuthenticationService'
+import Login from '@/services/Login'
 import GetAllUsers from '@/services/GetAllUsers'
 export default {
   data(){
@@ -40,35 +36,35 @@ export default {
       lastName:'',
       username:'',
       password:'',
-      inregistrat: false,
+      logat: false,
       serverMessage:{},
       serverError: false,
       users:[{}]
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-      const response = await AuthenticationService.register({
+      const response = await Login.login({
         firstName: this.firstName,
         lastName: this.lastName,
         username: this.username,
         password: this.password
       })
        if (response.status === 200) {
-        this.inregistrat = true
+        this.logat = true
         this.serverError = false
         }
       this.serverMessage = response.data
       this.showUsers ()
-      this.reset ()
+      //this.reset ()
       } catch (error) {
         this.serverMessage = {message: error.response.data.message}
         this.serverError = true
       }
     },
     reset () {
-      //this.inregistrat = false
+      this.logat = false
       this.firstName = ''
       this.lastName = ''
       this.username = ''
@@ -91,7 +87,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.register{
+.login{
   border: 1px greenyellow solid;
 }
 h3 {
